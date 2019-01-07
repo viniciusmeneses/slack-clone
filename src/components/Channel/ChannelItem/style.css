@@ -20,11 +20,13 @@
   font-size: 19px;
 }
 
-.channels-list__button:hover::before {
+.channels-list__button:hover::before,
+.channels-list__button-selected::before {
   font-weight: 900;
 }
 
-.channels-list__button:hover {
+.channels-list__button:hover,
+.channels-list__button-selected {
   color: white;
   font-weight: bold;
   text-decoration: none;

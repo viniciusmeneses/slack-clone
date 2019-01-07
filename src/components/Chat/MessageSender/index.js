@@ -1,8 +1,10 @@
 import React, { Component, createRef } from 'react';
 import PropTypes from 'prop-types';
+import { Picker } from 'emoji-mart';
 import api from '../../../services/client';
 
 import './style.css';
+import 'emoji-mart/css/emoji-mart.css';
 
 export default class MessageSender extends Component {
   messageInputRef = createRef();
@@ -18,7 +20,6 @@ export default class MessageSender extends Component {
       avatar: PropTypes.string,
     }).isRequired,
     onMessageSend: PropTypes.func.isRequired,
-    onError: PropTypes.func.isRequired,
   };
 
   handleInputMessage = (e) => {
@@ -74,6 +75,8 @@ export default class MessageSender extends Component {
             ref={this.messageInputRef}
           />
           <button type="submit" className="form__send" />
+
+          <Picker onSelect={emoji => this.setState({ message: emoji.native })} />
         </form>
       </section>
     );

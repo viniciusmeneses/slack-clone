@@ -5,19 +5,19 @@
 
 .message__avatar {
   margin-right: 12px;
-  min-width: 34px;
+  min-width: 38px;
 }
 
 .message__avatar-image {
-  min-width: 34px;
-  min-height: 34px;
-  max-width: 34px;
-  max-height: 34px;
+  min-width: 38px;
+  min-height: 38px;
+  max-width: 38px;
+  max-height: 38px;
 }
 
 .message-header__name {
   font-family: 'IBM Plex Sans', sans-serif;
-  font-weight: normal;
+  font-weight: bold;
   font-size: 15px;
   line-height: 15px;
   display: inline-block;
@@ -30,7 +30,7 @@
 }
 
 .message-header__created-time {
-  color: #e5e5e5;
+  color: #cccccc;
   font-family: 'Lato', sans-serif;
   font-size: 12px;
   line-height: 12px;

@@ -7,6 +7,7 @@ import './style.css';
 export default class Channel extends Component {
   state = {
     channelList: [],
+    selectedChannel: '',
   };
 
   componentDidMount() {
@@ -14,15 +15,30 @@ export default class Channel extends Component {
   }
 
   loadChannelsList = () => {
-    client.listChannels().then(channels => this.setState({ channelList: channels }));
+    client.listChannels().then((channels) => {
+      const generalChannel = channels.find(({ name }) => name === 'general');
+      this.setState({
+        channelList: channels,
+      });
+      this.updateChannel(generalChannel);
+    });
   };
 
-  updateChannel = () => {};
+  updateChannel = (channel) => {
+    const { onUpdateChannel } = this.props;
+    this.setState({ selectedChannel: channel });
+    onUpdateChannel(channel);
+  };
 
   renderChannelList = () => {
-    const { channelList } = this.state;
-    return channelList.map(({ id, name }) => (
-      <ChannelItem key={id} name={name} onClick={this.updateChannel} />
+    const { channelList, selectedChannel } = this.state;
+    return channelList.map(channel => (
+      <ChannelItem
+        key={channel.id}
+        data={channel}
+        onClick={this.updateChannel}
+        selected={channel === selectedChannel}
+      />
     ));
   };
 

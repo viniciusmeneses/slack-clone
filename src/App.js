@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { NotificationContainer } from 'react-notifications';
+import client from './services/client';
 
 import Sidebar from './components/Sidebar';
 import Header from './components/Header';
@@ -8,20 +9,28 @@ import ChannelList from './components/Channel/ChannelList';
 
 import './App.css';
 
-const showNotification = ({ errorTitle, errorMessage }) => {
-  // NotificationManager.error(errorMessage, errorTitle);
-};
+export default class App extends Component {
+  state = {
+    channel: {},
+    messages: [],
+  };
 
-const App = () => (
-  <div className="wrapper">
-    <Sidebar />
-    <ChannelList />
-    <div className="content">
-      <Header />
-      <Chat onError={showNotification} />
-    </div>
-    <NotificationContainer />
-  </div>
-);
+  listMessages = (channel) => {
+    client.listMessages(channel.id).then(messages => this.setState({ messages, channel }));
+  };
 
-export default App;
+  render() {
+    const { messages, channel } = this.state;
+    return (
+      <div className="wrapper">
+        <Sidebar />
+        <ChannelList onUpdateChannel={this.listMessages} />
+        <div className="content">
+          <Header channel={channel.name} />
+          <Chat messages={messages} />
+        </div>
+        <NotificationContainer />
+      </div>
+    );
+  }
+}

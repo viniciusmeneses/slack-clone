@@ -29,16 +29,58 @@ const createSlackClient = () => {
       });
   };
 
+  const fetchUser = (user = '') => get('users.profile.get', { user })
+    .then(prop('profile'))
+    .then(profile => ({
+      id: user,
+      name: profile.display_name || profile.real_name,
+      avatar: profile.image_72,
+    }));
+
+  const replaceMessagesContent = (messages, regex, replaceCallback, prefix = '') => messages.map(message => ({
+    ...message,
+    content: `${prefix}${message.content.replace(regex, replaceCallback)}`,
+  }));
+
+  const findMentions = messages => replaceMessagesContent(
+    messages,
+    /<@(.+)>/gi,
+    mention => messages.find(message => message.author.id === /<@(.+)>/gi.exec(mention)[1]).author.name,
+  );
+
+  const findLinks = messages => replaceMessagesContent(messages, /<(.+)>/gi, link => String(/<(.+)>/gi.exec(link)[1]));
+
   return {
     listMessages: channel => get('channels.history', { channel })
       .then(propOr([], 'messages'))
       .then(reverse)
-      .then(messages => messages.map(message => ({
-        id: message.client_msg_id,
+      .then(messages => messages.map((message, index) => ({
+        id: message.client_msg_id || index,
         author: message.user,
         date: new Date(parseFloat(message.ts) * 1000),
         content: message.text,
-      }))),
+      })))
+      .then(messages => messages.filter(message => message.id))
+      .then(messages => ({ messages, users: messages.map(message => message.author) }))
+      .then(data => ({
+        ...data,
+        users: data.users.reduce(
+          (noDuplicateUsers, user) => (noDuplicateUsers.includes(user) ? noDuplicateUsers : [...noDuplicateUsers, user]),
+          [],
+        ),
+      }))
+      .then(data => ({ ...data, users: data.users.map(user => fetchUser(user)) }))
+      .then(data => ({ ...data, users: Promise.all(data.users) }))
+      .then((data) => {
+        const messages = [...data.messages];
+        return data.users.then(users => messages.map(message => ({
+          ...message,
+          author: users.find(({ id }) => id === message.author || id === ''),
+        })));
+      })
+      .then(findMentions)
+      .then(findLinks),
+
     createMessage: (channel, text) => get('chat.postMessage', { channel, text })
       .then(prop('message'))
       .then(message => ({
@@ -53,6 +95,7 @@ const createSlackClient = () => {
         id: channel.id,
         name: channel.name,
       }))),
+    fetchUser,
   };
 };
 
