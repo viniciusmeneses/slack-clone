@@ -1,0 +1,28 @@
+.header {
+  height: 82px;
+  border-bottom: 1px solid #eeeeee;
+  padding: 16px 22px;
+  color: #626262;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.header__title {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: normal;
+  line-height: normal;
+  font-size: 36px;
+}
+
+@media (max-width: 245px) {
+  .header {
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+  }
+
+  .header__title {
+    margin: 0;
+  }
+}
