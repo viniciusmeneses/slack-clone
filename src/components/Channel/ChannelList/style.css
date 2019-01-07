@@ -1,0 +1,85 @@
+.chat__menu {
+  width: 250px;
+  flex-shrink: 0;
+  flex-grow: 0;
+  background: #2a2d34;
+  max-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.chat__channel {
+  background: white;
+  flex-shrink: 1;
+  flex-grow: 1;
+  flex-basis: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.section-header {
+  box-sizing: border-box;
+  position: relative;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 36px;
+  font-weight: lighter;
+  height: 80px;
+  padding: 18px 25px;
+}
+
+.chat-menu__header {
+  color: white;
+}
+
+.chat-menu__header::after {
+  display: block;
+  position: absolute;
+  bottom: 0;
+  content: '';
+  height: 1px;
+  background-color: #1d2028;
+  border-bottom: 1px solid #31343c;
+  left: 0;
+  right: 0;
+}
+
+.chat-channel__header {
+  color: #626262;
+  border-bottom: 1px solid #eeeeee;
+  flex-shrink: 0;
+}
+
+.loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+
+.chat-menu__channels {
+  padding: 25px 35px 25px 35px;
+  max-height: calc(100vh - 80px);
+  overflow-y: auto;
+}
+
+.channels-list__title {
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.channels-list {
+  list-style-type: none;
+  margin: 0 0 0 20px;
+  padding: 0;
+  max-height: calc(100vh - 80px);
+}
+
+.chat-channel__messages {
+  list-style-type: none;
+  padding: 25px;
+  margin: 0;
+  flex-grow: 1;
+  overflow: auto;
+}

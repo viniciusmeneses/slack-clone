@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import api from '../../services/api';
+import api from '../../services/client';
 
 import Message from './Message';
 import MessageList from './MessageList';
@@ -24,18 +24,18 @@ export default class Chat extends Component {
   }
 
   fetchCurrentUser = async () => {
-    const { onError } = this.props;
-    try {
-      const response = await api.get('/me');
-      this.setState({
-        currentUser: response.data,
-      });
-    } catch (err) {
-      onError({
-        errorTitle: 'Current User',
-        errorMessage: err.response.statusText || err.request.statusText,
-      });
-    }
+    // const { onError } = this.props;
+    // try {
+    //   const response = await api.get('/me');
+    //   this.setState({
+    //     currentUser: response.data,
+    //   });
+    // } catch (err) {
+    //   onError({
+    //     errorTitle: 'Current User',
+    //     errorMessage: err.response.statusText || err.request.statusText,
+    //   });
+    // }
   };
 
   addNewMessage = (newMessage) => {
@@ -47,21 +47,21 @@ export default class Chat extends Component {
   };
 
   fetchMessages = async () => {
-    const { onError } = this.props;
-    try {
-      const response = await api.get('/messages');
-      this.setState({
-        messages: response.data,
-      });
-      setTimeout(() => {
-        this.fetchMessages();
-      }, 3000);
-    } catch (err) {
-      onError({
-        errorTitle: 'Fetch Messages',
-        errorMessage: err.response.statusText || err.request.statusText,
-      });
-    }
+    // const { onError } = this.props;
+    // try {
+    //   const response = await api.get('/messages');
+    //   this.setState({
+    //     messages: response.data,
+    //   });
+    //   setTimeout(() => {
+    //     this.fetchMessages();
+    //   }, 3000);
+    // } catch (err) {
+    //   onError({
+    //     errorTitle: 'Fetch Messages',
+    //     errorMessage: err.response.statusText || err.request.statusText,
+    //   });
+    // }
   };
 
   renderMessages = () => {

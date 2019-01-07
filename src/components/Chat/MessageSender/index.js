@@ -1,6 +1,6 @@
 import React, { Component, createRef } from 'react';
 import PropTypes from 'prop-types';
-import api from '../../../services/api';
+import api from '../../../services/client';
 
 import './style.css';
 
@@ -28,27 +28,26 @@ export default class MessageSender extends Component {
   };
 
   sendMessage = async (e) => {
-    e.preventDefault();
-    const {
-      user: { id },
-      onMessageSend,
-      onError,
-    } = this.props;
-    const { message } = this.state;
-
-    if (message) {
-      try {
-        const response = await api.post('/messages', { message, author_id: id });
-        this.setState({ message: '' });
-        onMessageSend(response.data);
-      } catch (err) {
-        onError({
-          errorTitle: 'Send Message',
-          errorMessage: err.response.statusText || err.request.statusText,
-        });
-      }
-    }
-    this.messageInputRef.current.focus();
+    // e.preventDefault();
+    // const {
+    //   user: { id },
+    //   onMessageSend,
+    //   onError,
+    // } = this.props;
+    // const { message } = this.state;
+    // if (message) {
+    //   try {
+    //     const response = await api.post('/messages', { message, author_id: id });
+    //     this.setState({ message: '' });
+    //     onMessageSend(response.data);
+    //   } catch (err) {
+    //     onError({
+    //       errorTitle: 'Send Message',
+    //       errorMessage: err.response.statusText || err.request.statusText,
+    //     });
+    //   }
+    // }
+    // this.messageInputRef.current.focus();
   };
 
   render() {

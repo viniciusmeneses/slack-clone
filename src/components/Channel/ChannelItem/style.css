@@ -1,0 +1,31 @@
+.channels-list__item {
+  margin-bottom: 8px;
+}
+
+.channels-list__button {
+  color: white;
+  font-family: 'Lato', sans-serif;
+  font-weight: normal;
+  text-decoration: none;
+  line-height: 17px;
+  font-size: 17px;
+  vertical-align: top;
+}
+
+.channels-list__button::before {
+  font-family: 'Font Awesome 5 Free';
+  font-weight: normal;
+  content: '\f086';
+  margin-right: 5px;
+  font-size: 19px;
+}
+
+.channels-list__button:hover::before {
+  font-weight: 900;
+}
+
+.channels-list__button:hover {
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+}

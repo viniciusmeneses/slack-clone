@@ -7,4 +7,6 @@ import './vendor/reset.css';
 import 'react-notifications/lib/notifications.css';
 import './index.css';
 
+require('dotenv').config();
+
 ReactDOM.render(<App />, document.getElementById('root'));
