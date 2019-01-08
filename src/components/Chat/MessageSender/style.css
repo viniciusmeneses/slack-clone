@@ -1,7 +1,5 @@
 .chat__message-sender {
-  min-height: 100px;
-  background-color: #efefef;
-  padding: 24px;
+  padding: 0px 17px 17px 17px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -12,44 +10,33 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  border: 2px solid #9e9e9e;
+  border-radius: 4px;
 }
 
 .form__message {
-  height: 52px;
+  height: 40px;
   font-family: 'Lato', sans-serif;
-  font-size: 14px;
-  line-height: 17px;
-  color: #393939;
-  background-color: #ffffff80;
-  border-radius: 6px;
+  font-size: 16px;
+  color: #333;
   border: none;
-  padding: 15px;
-  width: 100%;
-  margin: 0 24px;
+  padding: 0 10px;
+  flex: 1;
 }
 
-.form__send::before {
-  content: url('../../../assets/images/send_icon.svg');
-}
-
-.form__send:hover {
-  transform: scale(1.15);
-}
-
-.form__send {
-  border: none;
+.form__emoji-button {
   background: none;
-  cursor: pointer;
-  margin: 0;
-  padding: 0;
-  transition: all 0.2s ease;
+  border: none;
+}
+
+.form__emoji-button__icon {
+  font-size: 20px;
+  color: #808080;
+  margin-right: 10px;
+  margin-top: 4px;
 }
 
 @media (max-width: 370px) {
-  .message-sender__avatar {
-    display: none;
-  }
-
   .form__message {
     margin: 0 24px 0 0;
   }

@@ -11,6 +11,7 @@ export default class MessageSender extends Component {
 
   state = {
     message: '',
+    emojiOpen: false,
   };
 
   static propTypes = {
@@ -46,8 +47,12 @@ export default class MessageSender extends Component {
     // this.messageInputRef.current.focus();
   };
 
+  handleEmojiButton = () => this.setState({ emojiOpen: true });
+
+  handleEmojiSelect = emoji => this.setState(({ message }) => ({ message: `${message}${emoji.native}`, emojiOpen: false }));
+
   render() {
-    const { message } = this.state;
+    const { message, emojiOpen } = this.state;
 
     return (
       <section className="chat__message-sender">
@@ -57,19 +62,28 @@ export default class MessageSender extends Component {
             className="form__message"
             name="message"
             id="message"
-            placeholder="Type a message..."
+            placeholder="Message #estagioslackclone"
             value={message}
             onChange={this.handleInputMessage}
             ref={this.messageInputRef}
           />
-          <button type="submit" className="form__send" />
-
-          <Picker
-            set="emojione"
-            title="Slack"
-            emoji="speech_balloon"
-            onSelect={emoji => this.setState({ message: emoji.native })}
-          />
+          <div>
+            <button type="button" className="form__emoji-button" onClick={this.handleEmojiButton}>
+              <i className="far fa-smile form__emoji-button__icon" />
+            </button>
+            <Picker
+              title="Slack"
+              emoji="speech_balloon"
+              style={{
+                display: emojiOpen ? 'block' : 'none',
+                position: 'absolute',
+                right: 17,
+                bottom: 61,
+                boxShadow: '0 0px 5px 0 #00000018',
+              }}
+              onSelect={this.handleEmojiSelect}
+            />
+          </div>
         </form>
       </section>
     );

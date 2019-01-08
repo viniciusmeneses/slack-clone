@@ -1,6 +1,10 @@
 .message-list__message {
   display: flex;
-  padding: 16px 24px 0 24px;
+  padding: 8px 24px 0 24px;
+}
+
+.message-list__message:hover {
+  background-color: #eae7ff50;
 }
 
 .message__avatar {
@@ -37,6 +41,7 @@
   font-size: 14px;
   line-height: 21px;
   color: #333;
+  margin-bottom: 8px;
 }
 
 .message__avatar-image {
