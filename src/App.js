@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { NotificationContainer } from 'react-notifications';
 import client from './services/client';
 
-import Sidebar from './components/Sidebar';
 import Header from './components/Header';
 import Chat from './components/Chat';
 import ChannelList from './components/Channel/ChannelList';
@@ -23,7 +22,6 @@ export default class App extends Component {
     const { messages, channel } = this.state;
     return (
       <div className="wrapper">
-        <Sidebar />
         <ChannelList onUpdateChannel={this.listMessages} />
         <div className="content">
           <Header channel={channel.name} />

@@ -4,7 +4,7 @@
 }
 
 .message__avatar {
-  margin-right: 12px;
+  margin-right: 10px;
   min-width: 38px;
 }
 
@@ -17,30 +17,26 @@
 
 .message-header__name {
   font-family: 'IBM Plex Sans', sans-serif;
-  font-weight: bold;
+  font-weight: bolder;
   font-size: 15px;
   line-height: 15px;
   display: inline-block;
   margin: 0;
 }
 
-.message-header__created-time::before {
-  content: '  \2022  ';
-  font-size: 15px;
-}
-
 .message-header__created-time {
-  color: #cccccc;
+  color: #8d8d8d;
   font-family: 'Lato', sans-serif;
   font-size: 12px;
   line-height: 12px;
+  margin-left: 5px;
 }
 
 .message-body__text {
   font-family: 'IBM Plex Sans', sans-serif;
   font-size: 14px;
   line-height: 21px;
-  color: #494949;
+  color: #333;
 }
 
 @media (max-width: 330px) {

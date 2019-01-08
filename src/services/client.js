@@ -37,18 +37,21 @@ const createSlackClient = () => {
       avatar: profile.image_72,
     }));
 
-  const replaceMessagesContent = (messages, regex, replaceCallback, prefix = '') => messages.map(message => ({
+  const replaceMessagesContent = (messages, regex, replaceCallback) => messages.map(message => ({
     ...message,
-    content: `${prefix}${message.content.replace(regex, replaceCallback)}`,
+    content: `${message.content.replace(regex, replaceCallback)}`,
   }));
 
   const findMentions = messages => replaceMessagesContent(
     messages,
     /<@(.+)>/gi,
-    mention => messages.find(message => message.author.id === /<@(.+)>/gi.exec(mention)[1]).author.name,
+    mention => `@${
+      messages.find(message => message.author.id === /<@(.+)>/gi.exec(mention)[1]).author.name
+    }`,
+    '@',
   );
 
-  const findLinks = messages => replaceMessagesContent(messages, /<(.+)>/gi, link => String(/<(.+)>/gi.exec(link)[1]));
+  const findLinks = messages => replaceMessagesContent(messages, /<(.+)>/gi, link => /<(.+)>/gi.exec(link)[1]);
 
   return {
     listMessages: channel => get('channels.history', { channel })

@@ -4,7 +4,7 @@ import '@fortawesome/fontawesome-free/css/all.css';
 import './style.css';
 
 const ChannelItem = ({ data, onClick, selected }) => (
-  <li className="channels-list__item">
+  <li className={`channels-list__item ${selected && 'channels-list__item-selected'}`}>
     <a
       href={`#${data.name}`}
       className={`channels-list__button ${selected && 'channels-list__button-selected'}`}

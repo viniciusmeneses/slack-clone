@@ -76,7 +76,12 @@ export default class MessageSender extends Component {
           />
           <button type="submit" className="form__send" />
 
-          <Picker onSelect={emoji => this.setState({ message: emoji.native })} />
+          <Picker
+            set="emojione"
+            title="Slack"
+            emoji="speech_balloon"
+            onSelect={emoji => this.setState({ message: emoji.native })}
+          />
         </form>
       </section>
     );

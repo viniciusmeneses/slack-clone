@@ -41,7 +41,7 @@ export default class Chat extends Component {
 
     return (
       <main className="chat">
-        <MessageList>{this.renderMessages()}</MessageList>
+        <MessageList data-simplebar>{this.renderMessages()}</MessageList>
         <MessageSender user={currentUser} onMessageSend={this.addNewMessage} />
       </main>
     );

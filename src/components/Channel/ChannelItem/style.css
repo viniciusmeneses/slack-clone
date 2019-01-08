@@ -1,28 +1,32 @@
-.channels-list__item {
-  margin-bottom: 8px;
+.channels-list__item-selected,
+.channels-list__item:hover {
+  background-color: #49c4a1;
 }
 
 .channels-list__button {
-  color: white;
+  color: #ffffffc9;
   font-family: 'Lato', sans-serif;
-  font-weight: normal;
+  font-weight: lighter;
   text-decoration: none;
   line-height: 17px;
   font-size: 17px;
-  vertical-align: top;
+  padding: 6px 0 6px 20px;
+  display: block;
 }
 
 .channels-list__button::before {
-  font-family: 'Font Awesome 5 Free';
-  font-weight: normal;
-  content: '\f086';
+  content: '#';
+  color: #ffffff9f;
+  font-weight: lighter;
   margin-right: 5px;
   font-size: 19px;
+  line-height: 15px;
 }
 
 .channels-list__button:hover::before,
 .channels-list__button-selected::before {
   font-weight: 900;
+  color: white;
 }
 
 .channels-list__button:hover,

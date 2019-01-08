@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import Linkify from 'react-linkify';
-import Emoji from 'react-emoji-render';
+import { textEmoji } from 'markdown-to-text-emoji';
 
 import './style.css';
 
@@ -20,15 +20,15 @@ const Message = ({ message }) => (
     <div className="message__content">
       <header className="content__message-header">
         <h1 className="message-header__name">{message.author.name}</h1>
-        <span className="message-header__created-time">{moment(message.date).format('hh:mm')}</span>
+        <span className="message-header__created-time">
+          {moment(message.date).format('hh:mm A')}
+        </span>
       </header>
 
       <article className="content__message-body">
-        <Linkify>
-          <p className="message-body__text">
-            <Emoji text={message.content} />
-          </p>
-        </Linkify>
+        <p className="message-body__text">
+          <Linkify>{textEmoji(message.content)}</Linkify>
+        </p>
       </article>
     </div>
   </article>

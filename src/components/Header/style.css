@@ -1,18 +1,19 @@
 .header {
-  height: 82px;
+  height: 65px;
   border-bottom: 1px solid #eeeeee;
   padding: 16px 22px;
-  color: #626262;
+  color: #333;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
+  align-items: center;
   flex-wrap: wrap;
 }
 
 .header__title {
   font-family: 'IBM Plex Sans', sans-serif;
-  font-weight: normal;
+  font-weight: bold;
   line-height: normal;
-  font-size: 36px;
+  font-size: 25px;
 }
 
 @media (max-width: 245px) {
