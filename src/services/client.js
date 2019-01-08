@@ -99,6 +99,9 @@ const createSlackClient = () => {
         name: channel.name,
       }))),
     fetchUser,
+    getCurrentTeam: () => get('team.info')
+      .then(prop('team'))
+      .then(team => team.name),
   };
 };
 

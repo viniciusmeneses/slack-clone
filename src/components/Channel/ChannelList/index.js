@@ -43,11 +43,11 @@ export default class Channel extends Component {
   };
 
   render() {
-    const { user } = this.props;
+    const { user, team } = this.props;
     return (
       <nav className="chat__menu">
         <div className="section-header chat-menu__header">
-          <h1 className="chat-menu__header-workspace">Tagview</h1>
+          <h1 className="chat-menu__header-workspace">{team}</h1>
           <h6 className="chat-menu__header-user">
             <i className="fas fa-circle chat-menu__header-user-status" />
             {user.name}

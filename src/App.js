@@ -13,27 +13,31 @@ export default class App extends Component {
     channel: {},
     messages: [],
     currentUser: {},
+    team: '',
   };
 
   componentDidMount() {
     this.fetchCurrentUser();
+    this.fetchCurrentTeam();
   }
 
-  fetchCurrentUser = () => {
-    client.fetchUser().then(user => this.setState({
-      currentUser: user,
-    }));
-  };
+  fetchCurrentUser = () => client.fetchUser().then(user => this.setState({
+    currentUser: user,
+  }));
+
+  fetchCurrentTeam = () => client.getCurrentTeam().then(team => this.setState({ team }));
 
   listMessages = (channel) => {
     client.listMessages(channel.id).then(messages => this.setState({ messages, channel }));
   };
 
   render() {
-    const { messages, channel, currentUser } = this.state;
+    const {
+      messages, channel, currentUser, team,
+    } = this.state;
     return (
       <div className="wrapper">
-        <ChannelList user={currentUser} onUpdateChannel={this.listMessages} />
+        <ChannelList team={team} user={currentUser} onUpdateChannel={this.listMessages} />
         <div className="content">
           <Header channel={channel.name} />
           <Chat messages={messages} />
