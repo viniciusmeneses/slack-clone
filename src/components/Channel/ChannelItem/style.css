@@ -1,6 +1,6 @@
 .channels-list__item-selected,
 .channels-list__item:hover {
-  background-color: #49c4a1;
+  background-color: #20a38d;
 }
 
 .channels-list__button {
@@ -10,7 +10,7 @@
   text-decoration: none;
   line-height: 17px;
   font-size: 17px;
-  padding: 6px 0 6px 20px;
+  padding: 6px 0 6px 15px;
   display: block;
 }
 

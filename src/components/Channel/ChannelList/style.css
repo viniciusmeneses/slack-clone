@@ -20,19 +20,36 @@
 .section-header {
   box-sizing: border-box;
   position: relative;
-  font-family: 'IBM Plex Sans', sans-serif;
-  font-size: 36px;
-  font-weight: lighter;
   height: 63px;
-  padding: 18px 25px;
+  padding: 18px 15px;
 }
 
 .chat-menu__header {
-  color: white;
   font-weight: bold;
   display: flex;
-  align-items: center;
-  font-size: 25px;
+  justify-content: center;
+  flex-direction: column;
+  font-family: 'IBM Plex Sans', sans-serif;
+}
+
+.chat-menu__header-workspace {
+  font-size: 18px;
+  color: white;
+  margin: 0;
+}
+
+.chat-menu__header-user {
+  font-size: 13px;
+  color: #ffffff7e;
+  margin: 0;
+  line-height: 20px;
+}
+
+.chat-menu__header-user-status {
+  color: #20a38d;
+  margin-right: 7px;
+  font-size: 10px;
+  line-height: 0;
 }
 
 .chat-menu__header::after {
@@ -47,20 +64,6 @@
   right: 0;
 }
 
-.chat-channel__header {
-  color: #626262;
-  border-bottom: 1px solid #eeeeee;
-  flex-shrink: 0;
-}
-
-.loading {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  text-align: center;
-}
-
 .chat-menu__channels {
   padding: 15px 0 15px 0;
   max-height: calc(100vh - 63px);
@@ -71,8 +74,8 @@
   color: #ffffffc9;
   font-size: 17px;
   font-family: 'Lato', sans-serif;
-  font-weight: lighter;
-  padding-left: 20px;
+  font-weight: bold;
+  padding-left: 15px;
 }
 
 .channels-list {

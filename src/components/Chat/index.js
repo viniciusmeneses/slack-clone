@@ -9,20 +9,6 @@ import MessageSender from './MessageSender';
 import './style.css';
 
 export default class Chat extends Component {
-  state = {
-    currentUser: {},
-  };
-
-  componentDidMount() {
-    this.fetchCurrentUser();
-  }
-
-  fetchCurrentUser = () => {
-    client.fetchUser().then(user => this.setState({
-      currentUser: user,
-    }));
-  };
-
   addNewMessage = (newMessage) => {
     // const { messages } = this.props;
     // messages.push(newMessage);
@@ -37,12 +23,10 @@ export default class Chat extends Component {
   };
 
   render() {
-    const { currentUser } = this.state;
-
     return (
       <main className="chat">
         <MessageList data-simplebar>{this.renderMessages()}</MessageList>
-        <MessageSender user={currentUser} onMessageSend={this.addNewMessage} />
+        <MessageSender onMessageSend={this.addNewMessage} />
       </main>
     );
   }

@@ -39,6 +39,15 @@
   color: #333;
 }
 
+.message__avatar-image {
+  border-radius: 6px;
+  transition: all 0.5s ease;
+}
+
+.message__avatar-image:hover {
+  filter: grayscale(100%);
+}
+
 @media (max-width: 330px) {
   .message-header__name {
     display: block;

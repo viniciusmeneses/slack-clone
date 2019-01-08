@@ -12,6 +12,17 @@ export default class App extends Component {
   state = {
     channel: {},
     messages: [],
+    currentUser: {},
+  };
+
+  componentDidMount() {
+    this.fetchCurrentUser();
+  }
+
+  fetchCurrentUser = () => {
+    client.fetchUser().then(user => this.setState({
+      currentUser: user,
+    }));
   };
 
   listMessages = (channel) => {
@@ -19,10 +30,10 @@ export default class App extends Component {
   };
 
   render() {
-    const { messages, channel } = this.state;
+    const { messages, channel, currentUser } = this.state;
     return (
       <div className="wrapper">
-        <ChannelList onUpdateChannel={this.listMessages} />
+        <ChannelList user={currentUser} onUpdateChannel={this.listMessages} />
         <div className="content">
           <Header channel={channel.name} />
           <Chat messages={messages} />

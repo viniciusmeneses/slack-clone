@@ -14,11 +14,6 @@ export default class MessageSender extends Component {
   };
 
   static propTypes = {
-    user: PropTypes.shape({
-      id: PropTypes.string,
-      name: PropTypes.string,
-      avatar: PropTypes.string,
-    }).isRequired,
     onMessageSend: PropTypes.func.isRequired,
   };
 
@@ -52,17 +47,10 @@ export default class MessageSender extends Component {
   };
 
   render() {
-    const { user } = this.props;
     const { message } = this.state;
 
     return (
       <section className="chat__message-sender">
-        <img
-          title={user.name}
-          src={user.avatar}
-          alt="My Avatar"
-          className="message-sender__avatar"
-        />
         <form className="message-sender__form" id="message-sender-form" onSubmit={this.sendMessage}>
           <input
             type="text"
