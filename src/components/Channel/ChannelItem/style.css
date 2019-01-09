@@ -15,18 +15,22 @@
   margin-bottom: 0.5rem;
 }
 
-.channels-list__item-selected,
 .channels-list__item:hover {
+  background-color: #443046;
+}
+
+.channels-list__item-selected,
+.channels-list__item-selected:hover {
   background-color: #20a38d;
 }
 
 .channels-list__button {
   color: #ffffffc9;
   font-family: 'Lato', sans-serif;
-  font-weight: lighter;
+  font-weight: normal;
   text-decoration: none;
-  line-height: 17px;
-  font-size: 17px;
+  line-height: 16px;
+  font-size: 16px;
   padding: 6px 0 6px 15px;
   display: block;
 }
@@ -34,21 +38,20 @@
 .channels-list__button::before {
   content: '#';
   color: #ffffff9f;
-  font-weight: lighter;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 400;
   margin-right: 5px;
-  font-size: 19px;
-  line-height: 15px;
 }
 
 .channels-list__button:hover::before,
 .channels-list__button-selected::before {
-  font-weight: 900;
+  font-weight: normal;
   color: white;
 }
 
 .channels-list__button:hover,
 .channels-list__button-selected {
   color: white;
-  font-weight: bold;
+  font-weight: normal;
   text-decoration: none;
 }
