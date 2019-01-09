@@ -9,25 +9,17 @@ import MessageSender from './MessageSender';
 import './style.css';
 
 export default class Chat extends Component {
-  addNewMessage = (newMessage) => {
-    // const { messages } = this.props;
-    // messages.push(newMessage);
-    // this.setState({
-    //   messages,
-    // });
-  };
-
   renderMessages = () => {
     const { messages } = this.props;
-    return messages.map(message => <Message key={message.id} message={message} {...this.props} />);
+    return messages.map(message => <Message key={message.id} message={message} />);
   };
 
   render() {
-    const { channel } = this.props;
+    const { channel, onMessageSend } = this.props;
     return (
       <main className="chat">
         <MessageList data-simplebar>{this.renderMessages()}</MessageList>
-        <MessageSender onMessageSend={this.addNewMessage} channel={channel} />
+        <MessageSender onMessageSend={onMessageSend} channel={channel} />
       </main>
     );
   }

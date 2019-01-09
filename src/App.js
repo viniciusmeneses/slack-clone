@@ -21,7 +21,7 @@ export default class App extends Component {
     this.fetchCurrentTeam();
   }
 
-  fetchCurrentUser = () => client.fetchUser().then(user => this.setState({
+  fetchCurrentUser = () => client.getCurrentUser().then(user => this.setState({
     currentUser: user,
   }));
 
@@ -33,18 +33,21 @@ export default class App extends Component {
     client.listMessages(channel.id).then(messages => this.setState({ messages, channel }));
   };
 
+  addNewMessage = newMessage => this.setState(prevState => ({
+    messages: [...prevState.messages, newMessage],
+  }));
+
   render() {
     const {
       messages, channel, currentUser, team,
     } = this.state;
 
-    console.log(messages);
     return (
       <div className="wrapper">
         <ChannelList team={team} user={currentUser} onUpdateChannel={this.listMessages} />
         <div className="content">
           <Header channel={channel.name} />
-          <Chat messages={messages} channel={channel} />
+          <Chat messages={messages} onMessageSend={this.addNewMessage} channel={channel} />
         </div>
         <NotificationContainer />
       </div>

@@ -26,28 +26,10 @@ export default class MessageSender extends Component {
     e.preventDefault();
 
     if (e.key === 'Enter') {
-      const { channel } = this.props;
+      const { channel, onMessageSend } = this.props;
       const { message } = this.state;
-      client.createMessage(channel.id, message);
+      client.createMessage(channel.id, message).then(onMessageSend).then(this.setState({ message: '' }));
     }
-    // const {
-    //   user: { id },
-    //   onMessageSend,
-    //   onError,
-    // } = this.props;
-    // const { message } = this.state;
-    // if (message) {
-    //   try {
-    //     const response = await api.post('/messages', { message, author_id: id });
-    //     this.setState({ message: '' });
-    //     onMessageSend(response.data);
-    //   } catch (err) {
-    //     onError({
-    //       errorTitle: 'Send Message',
-    //       errorMessage: err.response.statusText || err.request.statusText,
-    //     });
-    //   }
-    // }
     this.messageInputRef.current.focus();
   };
 
