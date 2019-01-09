@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import client from '../../services/client';
 
 import Message from './Message';
 import MessageList from './MessageList';
@@ -8,19 +7,24 @@ import MessageSender from './MessageSender';
 
 import './style.css';
 
-export default class Chat extends Component {
-  renderMessages = () => {
-    const { messages } = this.props;
-    return messages.map(message => <Message key={message.id} message={message} />);
-  };
+const Chat = ({ channel, onMessageSend, messages }) => (
+  <main className="chat">
+    <MessageList>
+      {messages.map(message => (
+        <Message key={message.id} message={message} />
+      ))}
+    </MessageList>
+    <MessageSender onMessageSend={onMessageSend} channel={channel} />
+  </main>
+);
 
-  render() {
-    const { channel, onMessageSend } = this.props;
-    return (
-      <main className="chat">
-        <MessageList data-simplebar>{this.renderMessages()}</MessageList>
-        <MessageSender onMessageSend={onMessageSend} channel={channel} />
-      </main>
-    );
-  }
-}
+Chat.propTypes = {
+  channel: PropTypes.shape({
+    id: PropTypes.string,
+    name: PropTypes.string,
+  }).isRequired,
+  onMessageSend: PropTypes.func.isRequired,
+  messages: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
+
+export default Chat;

@@ -36,9 +36,9 @@ const Message = ({ message }) => (
 
 Message.propTypes = {
   message: PropTypes.shape({
-    id: PropTypes.string,
+    id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     content: PropTypes.string,
-    created_at: PropTypes.string,
+    date: PropTypes.instanceOf(Date),
     author: PropTypes.shape({
       id: PropTypes.string,
       name: PropTypes.string,

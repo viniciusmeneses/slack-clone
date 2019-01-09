@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import ChannelItem from '../ChannelItem';
 import client from '../../../services/client';
 
@@ -8,6 +9,14 @@ export default class Channel extends Component {
   state = {
     channelList: [],
     selectedChannel: '',
+  };
+
+  static propTypes = {
+    team: PropTypes.string.isRequired,
+    user: PropTypes.shape({
+      name: PropTypes.string,
+    }).isRequired,
+    onUpdateChannel: PropTypes.func.isRequired,
   };
 
   componentDidMount() {
@@ -35,7 +44,7 @@ export default class Channel extends Component {
     return channelList.map(channel => (
       <ChannelItem
         key={channel.id}
-        data={channel}
+        channel={channel}
         onClick={this.updateChannel}
         selected={channel === selectedChannel}
       />

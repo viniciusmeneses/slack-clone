@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import App from './App';
 
 import './vendor/reset.css';
+import '@fortawesome/fontawesome-free/css/all.css';
 import 'react-notifications/lib/notifications.css';
 import './index.css';
 

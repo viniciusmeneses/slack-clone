@@ -15,6 +15,10 @@ export default class MessageSender extends Component {
   };
 
   static propTypes = {
+    channel: PropTypes.shape({
+      id: PropTypes.string,
+      name: PropTypes.string,
+    }).isRequired,
     onMessageSend: PropTypes.func.isRequired,
   };
 
@@ -28,7 +32,10 @@ export default class MessageSender extends Component {
     if (e.key === 'Enter') {
       const { channel, onMessageSend } = this.props;
       const { message } = this.state;
-      client.createMessage(channel.id, message).then(onMessageSend).then(this.setState({ message: '' }));
+      client
+        .createMessage(channel.id, message)
+        .then(onMessageSend)
+        .then(this.setState({ message: '' }));
     }
     this.messageInputRef.current.focus();
   };
@@ -38,7 +45,7 @@ export default class MessageSender extends Component {
   handleEmojiSelect = (emoji) => {
     this.setState(({ message }) => ({ message: `${message}${emoji.native}`, emojiOpen: false }));
     this.messageInputRef.current.focus();
-  }
+  };
 
   render() {
     const { message, emojiOpen } = this.state;
