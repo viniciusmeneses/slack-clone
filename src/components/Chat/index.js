@@ -23,10 +23,11 @@ export default class Chat extends Component {
   };
 
   render() {
+    const { channel } = this.props;
     return (
       <main className="chat">
         <MessageList data-simplebar>{this.renderMessages()}</MessageList>
-        <MessageSender onMessageSend={this.addNewMessage} />
+        <MessageSender onMessageSend={this.addNewMessage} channel={channel} />
       </main>
     );
   }

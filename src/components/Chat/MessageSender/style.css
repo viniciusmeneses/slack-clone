@@ -22,19 +22,43 @@
   border: none;
   padding: 0 10px;
   flex: 1;
+  width: 100%;
 }
 
 .form__emoji-button {
   background: none;
   border: none;
+  margin-right: 10px;
+  margin-top: 4px;
+  padding: 0;
+}
+
+.form__emoji-button:focus {
+  outline: none;
 }
 
 .form__emoji-button__icon {
   font-size: 20px;
   color: #808080;
-  margin-right: 10px;
-  margin-top: 4px;
+  margin: 0;
+  vertical-align: center;
+  transition: all 0.5s ease;
 }
+
+.form__emoji-button__icon:hover::before {
+  content: "\f580" !important;
+}
+
+.form__emoji-button__icon:hover {
+  transform: scale(1.3);
+}
+
+.fa-grin.form__emoji-button__icon {
+  transform: scale(1.3);
+  margin: 0;
+  vertical-align: center;
+}
+
 
 @media (max-width: 370px) {
   .form__message {

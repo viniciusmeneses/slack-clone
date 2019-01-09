@@ -1,3 +1,16 @@
+.channels-list__item button {
+  background: none;
+  border: none;
+  width: 100%;
+  display: block;
+  cursor: pointer;
+  margin: 0;
+  text-align: left;
+}
+.channels-list__item button:focus {
+  outline: none;
+}
+
 .channels-list__item:last-child {
   margin-bottom: 0.5rem;
 }

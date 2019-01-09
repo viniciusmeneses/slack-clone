@@ -5,13 +5,13 @@ import './style.css';
 
 const ChannelItem = ({ data, onClick, selected }) => (
   <li className={`channels-list__item ${selected && 'channels-list__item-selected'}`}>
-    <a
-      href={`#${data.name}`}
+    <button
+      type="button"
       className={`channels-list__button ${selected && 'channels-list__button-selected'}`}
       onClick={() => onClick(data)}
     >
       {data.name}
-    </a>
+    </button>
   </li>
 );
 

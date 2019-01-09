@@ -28,6 +28,8 @@ export default class App extends Component {
   fetchCurrentTeam = () => client.getCurrentTeam().then(team => this.setState({ team }));
 
   listMessages = (channel) => {
+    const { team } = this.state;
+    document.title = `#${channel.name} | ${team} Slack`;
     client.listMessages(channel.id).then(messages => this.setState({ messages, channel }));
   };
 
@@ -35,12 +37,14 @@ export default class App extends Component {
     const {
       messages, channel, currentUser, team,
     } = this.state;
+
+    console.log(messages);
     return (
       <div className="wrapper">
         <ChannelList team={team} user={currentUser} onUpdateChannel={this.listMessages} />
         <div className="content">
           <Header channel={channel.name} />
-          <Chat messages={messages} />
+          <Chat messages={messages} channel={channel} />
         </div>
         <NotificationContainer />
       </div>

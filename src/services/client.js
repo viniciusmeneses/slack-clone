@@ -1,5 +1,7 @@
 import axios from 'axios';
-import { reverse, propOr, prop } from 'ramda';
+import {
+  reverse, propOr, prop,
+} from 'ramda';
 import { NotificationManager } from 'react-notifications';
 
 const api = axios.create({
@@ -45,9 +47,12 @@ const createSlackClient = () => {
   const findMentions = messages => replaceMessagesContent(
     messages,
     /<@(.+)>/gi,
-    mention => `@${
-      messages.find(message => message.author.id === /<@(.+)>/gi.exec(mention)[1]).author.name
-    }`,
+    (mention) => {
+      const messageFound = messages.find(message => message.author.id === /<@(.+)>/gi.exec(mention)[1]);
+      return `@${
+        messageFound ? messageFound.author.name : mention
+      }`;
+    },
     '@',
   );
 
@@ -84,7 +89,9 @@ const createSlackClient = () => {
       .then(findMentions)
       .then(findLinks),
 
-    createMessage: (channel, text) => get('chat.postMessage', { channel, text })
+    createMessage: (channel, text) => get('chat.postMessage', {
+      channel, text, as_user: true, link_names: 1, parse: 'full',
+    })
       .then(prop('message'))
       .then(message => ({
         id: message.ts + message.text,

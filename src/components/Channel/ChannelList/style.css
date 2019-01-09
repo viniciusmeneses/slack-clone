@@ -1,8 +1,9 @@
 .chat__menu {
-  width: 250px;
-  flex-shrink: 0;
-  flex-grow: 0;
-  background: #5c3a58;
+  width: 230px;
+  max-width: 230px;
+  flex-shrink: 1;
+  flex-grow: 1;
+  background: #563e58;
   max-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -58,8 +59,8 @@
   bottom: 0;
   content: '';
   height: 1px;
-  background-color: #5c3a58;
-  border-bottom: 1px solid #6e4569;
+  background-color: #563e58;
+  border-bottom: 1px solid #6b4b6e;
   left: 0;
   right: 0;
 }
