@@ -8,6 +8,8 @@ import ChannelList from './components/Channel/ChannelList';
 
 import './App.css';
 
+let timer;
+
 export default class App extends Component {
   state = {
     channel: {},
@@ -29,8 +31,10 @@ export default class App extends Component {
 
   listMessages = (channel) => {
     const { team } = this.state;
+    clearInterval(timer);
     document.title = `#${channel.name} | ${team} Slack`;
     client.listMessages(channel.id).then(messages => this.setState({ messages, channel }));
+    timer = setTimeout(() => this.listMessages(channel), 3000);
   };
 
   addNewMessage = newMessage => this.setState(prevState => ({

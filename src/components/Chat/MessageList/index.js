@@ -14,18 +14,10 @@ export default class MessageList extends Component {
     this.scrollToBottom();
   }
 
-  componentDidUpdate() {
-    this.scrollToBottom();
-  }
-
   scrollToBottom = () => {
     const { current } = this.messageRef;
-    if (this.isNearToBottom(current)) {
-      current.scrollTop = current.scrollHeight;
-    }
+    current.scrollTop = current.scrollHeight;
   };
-
-  isNearToBottom = element => element.scrollTop + 80 * 10 >= element.scrollHeight || !element.scrollTop;
 
   render() {
     const { children } = this.props;
